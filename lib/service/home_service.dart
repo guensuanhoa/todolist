@@ -9,11 +9,13 @@ class HomeService {
     [
       {
           "id" : 0,
-          "content": "Thuc day som"
+          "content": "Thuc day som",
+          "checked": true
       },
       {
           "id" : 1,
-          "content": "Thuc day som"
+          "content": "Thuc day som",
+          "checked": false
       }
     ]
    }''';

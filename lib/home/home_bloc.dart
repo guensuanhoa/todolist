@@ -35,8 +35,39 @@ class HomeBloc extends Bloc<HomeState> {
 
   void onTodoItemCreated({String content}) {
     List<TodoItem> cur = List<TodoItem>.from(lastedState.todoList ?? []);
-    TodoItem newItem = TodoItem(id: cur.length, content: content);
+    TodoItem newItem = TodoItem(
+      id: cur.length,
+      content: content,
+      checked: false,
+    );
     cur.add(newItem);
+    update(lastedState.copyWith(id: HomeStateId.Listing, todoList: cur));
+  }
+
+  void onUserChangeItemValue({int index, bool value}) {
+    List<TodoItem> cur = List<TodoItem>.from(lastedState.todoList ?? []);
+    if (index >= 0 && index < cur.length) {
+      TodoItem changedItem = cur[index];
+      TodoItem newItem = TodoItem(
+        id: changedItem.id,
+        content: changedItem.content,
+        checked: value,
+      );
+      cur[index] = newItem;
+    }
     update(lastedState.copyWith(todoList: cur));
+  }
+
+  void onUserDeleteItem({int index}) {
+    List<TodoItem> cur = List<TodoItem>.from(lastedState.todoList ?? []);
+    if (index >= 0 && index < cur.length) {
+      cur.removeAt(index);
+    }
+    update(
+      lastedState.copyWith(
+        id: cur.length > 0 ? HomeStateId.Listing : HomeStateId.Empty,
+        todoList: cur,
+      ),
+    );
   }
 }

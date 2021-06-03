@@ -41,7 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
           log('_HomeScreenState.build: $id');
           switch (id) {
             case HomeStateId.Listing:
-              return TodoListSection(todoList: snapshot.data.todoList);
+              return TodoListSection(
+                todoList: snapshot.data.todoList,
+                onItemChanged: (index, value) {
+                  _bloc.onUserChangeItemValue(index: index, value: value,);
+                },
+                onDeleted: (index) {
+                  _bloc.onUserDeleteItem(index: index);
+                },
+              );
             case HomeStateId.Empty:
               return Center(child: Text("Bạn chưa có công việc nào"));
             default:
