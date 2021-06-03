@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           HomeStateId id = snapshot.data.id;
           switch (id) {
             case HomeStateId.Listing:
-              return TodoListSection();
+              return TodoListSection(todoList: snapshot.data.todoList);
             case HomeStateId.Empty:
               return Center(child: Text("Ban chua co cong viec nao"));
             default:
