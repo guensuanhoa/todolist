@@ -1,6 +1,7 @@
 import 'package:todolist/base/bloc.dart';
 import 'package:todolist/base/data_request.dart';
 import 'package:todolist/home/home_state.dart';
+import 'package:todolist/home/model/todo_item.dart';
 import 'package:todolist/service/home_service.dart';
 
 class HomeBloc extends Bloc<HomeState> {
@@ -30,5 +31,11 @@ class HomeBloc extends Bloc<HomeState> {
     }, onFailure: (error) {
       update(lastedState.copyWith(id: HomeStateId.Error));
     }));
+  }
+
+  void onTodoItemCreated({TodoItem todoItem}) {
+    List<TodoItem> cur = List<TodoItem>.from(lastedState.todoList);
+    cur.add(todoItem);
+    update(lastedState.copyWith(todoList: cur));
   }
 }
