@@ -33,9 +33,10 @@ class HomeBloc extends Bloc<HomeState> {
     }));
   }
 
-  void onTodoItemCreated({TodoItem todoItem}) {
-    List<TodoItem> cur = List<TodoItem>.from(lastedState.todoList);
-    cur.add(todoItem);
+  void onTodoItemCreated({String content}) {
+    List<TodoItem> cur = List<TodoItem>.from(lastedState.todoList ?? []);
+    TodoItem newItem = TodoItem(id: cur.length, content: content);
+    cur.add(newItem);
     update(lastedState.copyWith(todoList: cur));
   }
 }

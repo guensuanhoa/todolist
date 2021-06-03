@@ -23,6 +23,7 @@ class AddItemScreen extends StatefulWidget {
 
 class _AddItemScreenState extends State<AddItemScreen> {
   AddItemBloc _bloc;
+  TextEditingController _textEditingController = new TextEditingController();
 
   @override
   void initState() {
@@ -45,7 +46,44 @@ class _AddItemScreenState extends State<AddItemScreen> {
         initialData: _bloc.initialState,
         stream: _bloc.stream,
         builder: (context, snapshot) {
-          return Center(child: CircularProgressIndicator());
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextField(
+                  controller: _textEditingController,
+                  decoration: new InputDecoration(
+                    border: new OutlineInputBorder(
+                      borderSide: new BorderSide(
+                        color: Colors.teal,
+                      ),
+                    ),
+                    helperText: 'Nhập nội dung công việc',
+                    labelText: 'Nội dung công việc',
+                    prefixIcon: const Icon(
+                      Icons.task,
+                      color: Colors.green,
+                    ),
+                    prefixText: ' ',
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 16),
+                  child: RaisedButton(
+                    onPressed: () {
+                      String content = _textEditingController.text?.trim();
+                      if (content?.isNotEmpty == true) {
+                        Navigator.of(context).pop(content);
+                      }
+                    },
+                    child: Text("Tạo"),
+                  ),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );

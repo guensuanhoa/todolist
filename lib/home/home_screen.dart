@@ -51,11 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          TodoItem todoItem = await AddItemScreen.show(context: context);
+          String content = await AddItemScreen.show(context: context);
 
-          log('_HomeScreenState.createTodoItem: $todoItem');
-          if (todoItem != null) {
-            _bloc.onTodoItemCreated(todoItem: todoItem);
+          log('_HomeScreenState.createTodoItem: $content');
+          if (content != null) {
+            _bloc.onTodoItemCreated(content: content);
           }
         },
         child: const Icon(Icons.add_circle_outline),

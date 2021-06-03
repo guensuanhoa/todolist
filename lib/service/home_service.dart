@@ -8,11 +8,11 @@ class HomeService {
     "data": 
     [
       {
-          "id" : 1,
+          "id" : 0,
           "content": "Thuc day som"
       },
       {
-          "id" : 2,
+          "id" : 1,
           "content": "Thuc day som"
       }
     ]
