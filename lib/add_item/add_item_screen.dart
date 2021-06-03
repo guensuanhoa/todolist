@@ -68,6 +68,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                     ),
                     prefixText: ' ',
                   ),
+                  autofocus: true,
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 16),

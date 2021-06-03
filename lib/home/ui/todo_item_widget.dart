@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:todolist/home/model/todo_item.dart';
 
@@ -21,12 +20,13 @@ class TodoItemWidget extends StatelessWidget {
       child: Row(
         children: [
           Checkbox(
-              value: item.checked ?? false,
-              onChanged: (value) {
-                if (onChanged != null) {
-                  onChanged();
-                }
-              },),
+            value: item.checked ?? false,
+            onChanged: (value) {
+              if (onChanged != null) {
+                onChanged();
+              }
+            },
+          ),
           Expanded(
             child: Text(
               item.content,
